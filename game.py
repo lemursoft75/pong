@@ -1,7 +1,11 @@
 import pygame
 import sys
 import random
+import os
 from utils import draw_text, draw_centered_text
+
+# Ruta base para los archivos
+base_path = os.path.dirname(__file__)
 
 def pause_game(win):
     paused = True
@@ -50,8 +54,10 @@ def game_loop(players=1):
     font = pygame.font.SysFont(None, 55)
 
     # Cargar sonidos
-    hit_sound = pygame.mixer.Sound("hit.wav")
-    score_sound = pygame.mixer.Sound("score.wav")
+    hit_sound_path = os.path.join(base_path, "hit.wav")
+    score_sound_path = os.path.join(base_path, "score.wav")
+    hit_sound = pygame.mixer.Sound(hit_sound_path)
+    score_sound = pygame.mixer.Sound(score_sound_path)
 
     while True:
         for event in pygame.event.get():
@@ -79,7 +85,7 @@ def game_loop(players=1):
         player_y += (keys[pygame.K_DOWN] - keys[pygame.K_UP]) * player_speed
 
         if players == 2:
-            enemy_y += (keys[pygame.K_x] - keys[pygame.K_s]) * enemy_speed
+            enemy_y += (keys[pygame.K_s] - keys[pygame.K_w]) * enemy_speed
         else:
             # Actualizar posición de la raqueta del oponente (Bot)
             enemy_y += enemy_speed * ((ball_y - (enemy_y + enemy_height / 2)) / height)
