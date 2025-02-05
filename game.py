@@ -79,7 +79,7 @@ def game_loop(players=1):
         player_y += (keys[pygame.K_DOWN] - keys[pygame.K_UP]) * player_speed
 
         if players == 2:
-            enemy_y += (keys[pygame.K_s] - keys[pygame.K_w]) * enemy_speed
+            enemy_y += (keys[pygame.K_x] - keys[pygame.K_s]) * enemy_speed
         else:
             # Actualizar posición de la raqueta del oponente (Bot)
             enemy_y += enemy_speed * ((ball_y - (enemy_y + enemy_height / 2)) / height)
